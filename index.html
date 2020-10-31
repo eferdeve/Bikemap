@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://kit.fontawesome.com/c68d341031.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+    integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+    crossorigin=""></script>
+  <link rel="icon" href="images/GreenBike.png">
+  <title>BikeMap location de vélos en ville</title>
+</head>
+
+<body>
+  <main>
+    <header>
+      <!-------------------------------------------------------- Titre -------------------------------------------------------->
+      <div id="container">
+        Location
+        Vélo!
+        <div id="flip">
+          <div>
+            <div>ecolo</div>
+          </div>
+          <div>
+            <div>Gratuit</div>
+          </div>
+          <div>
+            <div>Rapide</div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-------------------------------------------------------- Slider -------------------------------------------------------->
+    <section id="slider">
+      <img id="slideImg">
+
+      <div id="slideTxtDiv">
+        <h1>BikeMap Tutoriel d'utilisation</h1>
+        <p id="slideTxt"></p>
+      </div>
+
+      <div id="fleches">
+        <div id="fleche_gauche"> <i class="fas fa-arrow-circle-left fa-5x"> </i></div>
+        <div id="fleche_droite"> <i class="fas fa-arrow-circle-right fa-5x"> </i></div>
+      </div>
+    </section>
+
+    <div id="boutons">
+      <button id="play" value="Play">Play</button>
+      <button id="stop" value="Stop">Stop</button>
+    </div>
+
+    <div class="h3Title">
+      <h3>&darr; Choississez votre station sur la carte ci-dessous &darr;</h3>
+    </div>
+
+    <section id="map_form">
+      <!-------------------------------------------------------- Map -------------------------------------------------------->
+      <div id="map">
+
+      </div>
+      <!-------------------------------------------------------- Div information station -------------------------------------------------------->
+      <div id="infos_station">
+        <h3>Station choisie :</h3>
+        <div class="nomStation"></div>
+        <!-- statut de la station ajoutée en JS -->
+        <p>
+          <label for="status">Statut : </label> <span class="status"></span>
+        </p>
+        <!-- velos dispo ajoutée en JS -->
+        <p>
+          <label for="velosDispo">Nombre de Vélos :</label>
+          <span class="velosDispo"></span>
+        </p>
+        <!-- places dispo ajoutée en JS -->
+        <p>
+          <label for="placesDispo">Places :</label>
+          <span class="placesDispo"></span>
+        </p>
+        <div class="containerButton"><input id="reserForm" class="btnForm" type="button" value="Confirmer"></div>
+      </div>
+      <hr>
+      <!-------------------------------------------------------- Formulaires et Signature -------------------------------------------------------->
+      <form id="formInfo">
+        <!-- Formulaire de réservation -->
+        <h3>Réservation en cours : </h3>
+        <p>Veuillez ajouter votre nom et prénom :</p>
+        <p> <input id="nom" type="text" name="nom" placeholder="Votre nom" required> </p>
+        <p> <input id="prenom" type="text" name="prenom" placeholder="Votre prénom" required></p>
+        <p class="erreur">Veuillez indiquer votre Nom et Prénom svp !</p>
+        <div class="containerButton"><input id="signez" class="btnForm" type="button" value="Signature"></div>
+
+        <!-- Boutons Oui / Non en cas de nouvelle réservation -->
+        <div id="blockNewReservChoice">
+          <p class="newReserv">Une réservation est en déjà en cours !</p>
+          <p class="newReserv2"> Voulez-vous vraiment effectuer une nouvelle réservation ?<div class="nomStation"></div>
+          </p>
+
+          <div class="newReservChoice">
+            <input id="yesReserv" class="btnForm" type="button" value="Oui">
+            <input id="noReserv" class="btnForm" type="button" value="Non">
+          </div>
+        </div>
+      </form>
+
+      <form id="signature">
+        <!-- Canvas signature -->
+        <p>Signez ici :</p>
+        <canvas id="canvas">
+        </canvas>
+        <!-- bouton canvas effacer ou confirmer la reserv -->
+        <div class="containerButton">
+          <input id="clearSignature" class="btnForm" type="button" value="Effacer">
+          <input id="reserSignature" class="btnForm" type="button" value="Confirmer">
+        </div>
+      </form>
+    </section>
+    <!-------------------------------------------------------- Block de réservation avec chrono de 20min -------------------------------------------------------->
+    <!-- Div Cancel reservation-->
+    <div class="cancelReserv">
+      <h3 class="cancelMsg">Réservation annulée !</h3>
+    </div>
+    <!--Div expired reservation-->
+    <div class="expReserv">
+      <h3 class="expMsg">Réservation expirée !</h3>
+    </div>
+
+    <div id="reservation">
+      <h2>Votre réservation :</h2>
+      <p class="resTxt"> Vélo réservé à la station ➜ <span class="station"></span>
+        par <span class="nomReserv"></span> <span class="prenomReserv"></span></p>
+      <p class="expTxt">Temps restant ➜ <span id="timer"></span></p>
+      <button class="annuler">Annuler</button>
+    </div>
+  </main>
+
+  <script src="slider.js"></script>
+  <script src="map.js"></script>
+  <script src="canvas.js"></script>
+  <script src="design.js"></script>
+  <script src="reservation.js"></script>
+
+  <script src="app.js"></script>
+
+</body>
+
+</html>
